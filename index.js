@@ -1,13 +1,12 @@
-const {pool} = require('./database.js')
+const {pool} = require('./config/db')
 const express = require('express')
-var cors = require('cors')
+var cors = require('cors') 
 const app = express()
 const port = 5000
 
 app.use(express.json())
 app.use(cors())
-
-
+app.use("/posts", require('./routes/postRouter'))
 
 app.get('/', (req, res) => {
     res.send('Hello World!')

@@ -8,7 +8,7 @@ const pool= mysql.createPool({
     password:process.env.DB_PASSWORD,
 })
 
-let sql = 'select * from new_table'
+let sql = 'select * from timetable'
 
 pool.execute(sql,(err,res)=>{
     if(err) throw err;

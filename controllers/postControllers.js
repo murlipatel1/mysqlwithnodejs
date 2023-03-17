@@ -1,13 +1,17 @@
 const Post = require('../models/Post')
 
 exports.getAllPosts= async(req ,res , next)=>{
-
-    res.send("getallpost")
+    try{
+        const posts = await Post.findAll();
+        res.status(200).json({count:posts[0].length , posts})
+    }catch(error){
+        console.log(error)
+    }
 }
 exports.createNewPost= async(req ,res , next)=>{
-    let {title , body} = req.body
+    let {id,title , body} = req.body
 
-    let post = new Post(title , body)
+    let post = new Post(id,title , body)
 
     post = await post.save()
 
@@ -15,5 +19,12 @@ exports.createNewPost= async(req ,res , next)=>{
     res.send("createNewPost")
 }
 exports.getPostById= async(req ,res , next)=>{
-    res.send("getPostById")
+    try{
+        let postId = req.params.id
+    let [post , _] = await Post.findById(postId)
+
+    res.status(200).json({post})
+    }catch(err){
+        console.log(err)
+    }
 }

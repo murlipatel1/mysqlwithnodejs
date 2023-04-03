@@ -7,6 +7,7 @@ const port = 5000
 app.use(express.json())
 app.use(cors())
 app.use("/posts", require('./routes/postRouter'))
+app.use("/users", require('./routes/postRouterUser'))
 
 app.get('/', (req, res) => {
     res.send('Hello World!')

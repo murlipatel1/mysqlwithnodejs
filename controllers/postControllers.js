@@ -18,6 +18,7 @@ exports.createNewPost= async(req ,res , next)=>{
     console.log(post)
     res.send("createNewPost")
 }
+
 exports.getPostById= async(req ,res , next)=>{
     try{
         let postId = req.params.id

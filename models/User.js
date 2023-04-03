@@ -1,10 +1,9 @@
 const db = require('../config/db')
 
-class Post {
-  constructor(id,title, body) {
-    this.id =id;
-    this.title = title;
-    this.body = body;
+class User {
+  constructor(email, password) {
+    this.email = email;
+    this.password = password;
   }
 
   async save() {
@@ -15,21 +14,21 @@ class Post {
 
     let createdate = `${yyyy}-${mm}-${dd}`;
 
-    let sql = `insert into new_table(id, title,  body, created_at) values( '${this.id}','${this.title}','${this.body}', '${createdate}')`;
+    let sql = `insert into user(email,  password) values('${this.email}','${this.password}')`;
 
     const [newPost, _] = await db.execute(sql);
     return newPost;
   }
 
   static findAll() {
-    let sql="select * from timetable;"
+    let sql="select * from user;"
     return db.execute(sql);
   }
 
   static findById(id){
-    let sql =`select * from timetable where id= ${id}`
+    let sql =`select * from user where id= ${id}`
     return db.execute(sql)
   }
 }
 
-module.exports = Post;
+module.exports = User;
